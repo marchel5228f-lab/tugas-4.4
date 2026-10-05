@@ -303,4 +303,75 @@
             }
             return "Belum dipilih";
         }
+        
+            /* 10. EVENT SUBMIT */
 
+        document.getElementById("formData").addEventListener(
+            "submit",
+            function(event) {
+
+
+                event.preventDefault();
+
+
+                /* 11. MENGAMBIL DATA INPUT */
+                let nama =
+                    document.getElementById("nama").value;
+                let jumlah =
+                    document.getElementById("jumlah").value;
+                let email =
+                    document.getElementById("email").value;
+                let jurusan =
+                    document.getElementById("jurusan").value;
+
+
+                /* 12. MENGAMBIL TEMPAT ERROR */
+                let errorJumlah =
+                    document.getElementById("errorJumlah");
+
+                let errorEmail =
+                    document.getElementById("errorEmail");
+                errorJumlah.innerHTML = "";
+                errorEmail.innerHTML = "";
+
+
+                /* 13. ERROR HANDLING SPINNER */
+
+                if (jumlah < 1 || jumlah > 5) {
+
+                    errorJumlah.innerHTML =
+                        "Jumlah harus antara 1 sampai 5.";
+
+                    alert(
+                        "Jumlah pilihan tidak sesuai. " +
+                        "Silakan masukkan angka 1 sampai 5."
+                    );
+
+                    document
+                        .getElementById("jumlah")
+                        .focus();
+
+                    return;
+                }
+
+                /* 14. PATTERN MATCHING EMAIL */
+                let polaEmail =
+                    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                if (!polaEmail.test(email)) {
+                    errorEmail.innerHTML =
+                        "Format email tidak benar.";
+                    alert(
+                        "Email tidak valid. " +
+                        "Silakan masukkan email dengan format yang benar."
+                    );
+                    document
+                        .getElementById("email")
+                        .focus();
+
+                    return;
+                }
+
+
+            }
+        )
