@@ -93,8 +93,6 @@
             padding: 20px;
             background: #f4f6ff;
             border-radius: 10px;
-
-            /* Hasil disembunyikan terlebih dahulu */
             display: none;
         }
 
@@ -127,3 +125,118 @@
         </p>
 
         <form id="formData">
+
+                 <!-- 1. INPUT TEKS -->
+            <div class="form-group">
+                <label for="nama">Nama</label>
+                <input type="text"
+                       id="nama"
+                       placeholder="Masukkan nama"
+                       required>
+            </div>
+
+
+            <!-- 2. INPUT JUMLAH / SPINNER + ERROR HANDLING-->
+            <div class="form-group">
+                <label for="jumlah">Jumlah Pilihan</label>
+                <input type="number"
+                       id="jumlah"
+                       min="1"
+                       max="5"
+                       value="1">
+                <div id="errorJumlah" class="error"></div>
+
+            </div>
+
+
+            <!--3. INPUT EMAIL + PATTERN MATCHING-->
+            <div class="form-group">
+
+                <label for="email">Email</label>
+                <input type="email"
+                       id="email"
+                       placeholder="contoh@email.com"
+                       required>
+                <div id="errorEmail" class="error"></div>
+
+            </div>
+
+
+            <!--4. DROP-DOWN -->
+            <div class="form-group">
+                <label for="jurusan">Pilihan Jurusan</label>
+                <select id="jurusan">
+
+                    <option value="">
+                        -- Pilih Jurusan --
+                    </option>
+
+                    <option value="Informatika">
+                        Informatika
+                    </option>
+
+                    <option value="Akuntansi">
+                        Akuntansi
+                    </option>
+
+                    <option value="Teknik Mesin">
+                        Teknik Mesin
+                    </option>
+
+                    <option value="Teknik Elektro">
+                        Teknik Elektro
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- 5. CHECKBOX -->
+            <div class="form-group">
+                <label>Pilih Mata Kuliah</label>
+                <div class="pilihan">
+
+                    <!-- Checkbox 1 -->
+                    <label>
+                        <input type="checkbox"
+                               name="matkul"
+                               value="Pemrograman web">
+                        Pemrograman Web
+                    </label>
+
+                    <!-- Checkbox 2 -->
+                    <label>
+                        <input type="checkbox"
+                               name="matkul"
+                               value="Pembelajaran Mesin">
+                        Pembelajaran Mesin
+                    </label>
+
+                    <!-- Checkbox 3 -->
+                    <label>
+                        <input type="checkbox"
+                               name="matkul"
+                               value="Jaringan">
+                        Jaringan
+                    </label>
+
+                    <!-- Checkbox 4 -->
+                    <label>
+                        <input type="checkbox"
+                               name="matkul"
+                               value="Internet dan aplikasi">
+                        Internet dan Aplikasi
+                    </label>
+
+                    <!-- Checkbox 5 -->
+                    <label>
+                        <input type="checkbox"
+                               name="matkul"
+                               value="Matematika Diskrit">
+                        Matematika Diskrit
+                    </label>
+
+                </div>
+
+            </div>
