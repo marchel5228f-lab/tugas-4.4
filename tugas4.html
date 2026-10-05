@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form JavaScript</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 750px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 0;
+            color: #333;
+        }
+
+        .deskripsi {
+            text-align: center;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #bbb;
+            border-radius: 7px;
+            font-size: 15px;
+        }
+
+        .pilihan {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .pilihan label {
+            font-weight: normal;
+            margin: 0;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 7px;
+            background: #4b70e2;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #3457c4;
+        }
+
+        #hasil {
+            margin-top: 25px;
+            padding: 20px;
+            background: #f4f6ff;
+            border-radius: 10px;
+
+            /* Hasil disembunyikan terlebih dahulu */
+            display: none;
+        }
+
+        #hasil h2 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        #hasil p {
+            margin: 8px 0;
+        }
+
+        .error {
+            color: red;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Form Pilihan JavaScript</h1>
+
+        <p class="deskripsi">
+            Contoh penggunaan input, spinner, checkbox, radio button,
+            array, fungsi, dan DOM JavaScript.
+        </p>
+
+        <form id="formData">
