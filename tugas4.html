@@ -290,3 +290,17 @@
             }
             return pilihan;
         }
+
+            /* 9. FUNCTION UNTUK RADIO BUTTON */
+        function ambilRadio() {
+            let radio = document.querySelector(
+                'input[name="metode"]:checked'
+            );
+
+            if (radio != null) {
+                return radio.value;
+
+            }
+            return "Belum dipilih";
+        }
+
