@@ -384,6 +384,55 @@
                     arrayPilihan.push(matkul[i]);   
                 }
 
+            /* 18. JAVASCRIPT DOM UNTUK OUTPUT */
+                let output =
+                    document.getElementById("output");
+
+
+                // Menampilkan data ke HTML
+                output.innerHTML =
+
+                    "<p><b>Nama:</b> " +
+                    nama +
+                    "</p>" +
+
+                    "<p><b>Jumlah Pilihan:</b> " +
+                    jumlah +
+                    "</p>" +
+
+                    "<p><b>Email:</b> " +
+                    email +
+                    "</p>" +
+
+                    "<p><b>Jurusan:</b> " +
+                    jurusan +
+                    "</p>" +
+
+                    "<p><b>Mata Kuliah:</b> " +
+
+                    (
+                        arrayPilihan.length > 0
+                        ? arrayPilihan.join(", ")
+                        : "Belum dipilih"
+                    ) +
+
+                    "</p>" +
+
+                    "<p><b>Metode Pembelajaran:</b> " +
+                    metode +
+                    "</p>";
+
+
+            /* 19. MENAMPILKAN HASIL */
+                document.getElementById("hasil")
+                    .style.display = "block";
 
             }
-        )
+        );
+
+    </script>
+
+</body>
+</html>
+            
+        
