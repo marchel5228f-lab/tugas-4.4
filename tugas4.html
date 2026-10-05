@@ -277,3 +277,16 @@
 
 
     <script>
+
+  /* 8. FUNCTION + LOOP + ARRAY UNTUK CHECKBOX */
+        function ambilCheckbox() {
+            let checkbox = document.querySelectorAll(
+                'input[name="matkul"]:checked'
+            );
+            let pilihan = [];
+            for (let i = 0; i < checkbox.length; i++) {
+                pilihan.push(checkbox[i].value);
+
+            }
+            return pilihan;
+        }
