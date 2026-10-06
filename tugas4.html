@@ -164,45 +164,15 @@
           </select>
         </div>
 
-        <!-- 5. CHECKBOX -->
-        <div class="form-group">
-          <label>Pilih Mata Kuliah</label>
-          <div class="pilihan">
-            <!-- Checkbox 1 -->
-            <label>
-              <input type="checkbox" name="matkul" value="Pemrograman web" />
-              Pemrograman Web
-            </label>
+        <!-- 5. CHECKBOX MATA KULIAH -->
+<div class="form-group">
 
-            <!-- Checkbox 2 -->
-            <label>
-              <input type="checkbox" name="matkul" value="Pembelajaran Mesin" />
-              Pembelajaran Mesin
-            </label>
+    <label>Pilih Mata Kuliah</label>
 
-            <!-- Checkbox 3 -->
-            <label>
-              <input type="checkbox" name="matkul" value="Jaringan" />
-              Jaringan
-            </label>
+    <div class="pilihan" id="daftarMatkul">
+    </div>
 
-            <!-- Checkbox 4 -->
-            <label>
-              <input
-                type="checkbox"
-                name="matkul"
-                value="Internet dan aplikasi"
-              />
-              Internet dan Aplikasi
-            </label>
-
-            <!-- Checkbox 5 -->
-            <label>
-              <input type="checkbox" name="matkul" value="Matematika Diskrit" />
-              Matematika Diskrit
-            </label>
-          </div>
-        </div>
+</div>
 
         <!--  6. RADIO BUTTON -->
         <div class="form-group">
@@ -228,8 +198,96 @@
         <div id="output"></div>
       </div>
     </div>
-
     <script>
+        
+         /* 8. DATA MATA KULIAH BERDASARKAN JURUSAN */
+
+      let mataKuliah = {
+
+        "Informatika": [
+          "Pemrograman Web",
+          "Pembelajaran Mesin",
+          "Jaringan",
+          "Internet dan Aplikasi",
+          "Matematika Diskrit"
+        ],
+
+        "Akuntansi": [
+          "Akuntansi Keuangan",
+          "Akuntansi Biaya",
+          "Perpajakan",
+          "Auditing",
+          "Manajemen Keuangan"
+        ],
+
+        "Teknik Mesin": [
+          "Mekanika Teknik",
+          "Termodinamika",
+          "Material Teknik",
+          "Mesin Konversi Energi",
+          "Gambar Teknik"
+        ],
+
+        "Teknik Elektro": [
+          "Rangkaian Listrik",
+          "Elektronika",
+          "Sistem Digital",
+          "Mikrokontroler",
+          "Sistem Kendali"
+        ]
+
+      };
+
+
+      /* 9. FUNCTION + LOOP UNTUK CHECKBOX */
+      function tampilkanMatkul() {
+        let jurusan =
+          document.getElementById("jurusan").value;
+
+        let daftarMatkul =
+          document.getElementById("daftarMatkul");
+        daftarMatkul.innerHTML = "";
+
+        if (jurusan == "") {
+          return;
+        }
+        let daftar = mataKuliah[jurusan];
+        for (let i = 0; i < daftar.length; i++) {
+          let label =
+            document.createElement("label");
+          let checkbox =
+            document.createElement("input");
+          checkbox.type = "checkbox";
+          checkbox.name = "matkul";
+          checkbox.value = daftar[i];
+
+          checkbox.addEventListener(
+            "change",
+            cekJumlahCheckbox
+          );
+
+          label.appendChild(checkbox);
+
+          label.appendChild(
+            document.createTextNode(
+              " " + daftar[i]
+            )
+          );
+
+          daftarMatkul.appendChild(label);
+        }
+
+      }
+
+
+      /* 10. EVENT JURUSAN */
+      document
+        .getElementById("jurusan")
+        .addEventListener(
+          "change",
+          tampilkanMatkul
+        );
+
       /* 8. FUNCTION + LOOP + ARRAY UNTUK CHECKBOX */
       function ambilCheckbox() {
         let checkbox = document.querySelectorAll(
@@ -270,16 +328,66 @@
           }
         }
       }
-      /* 10. EVENT SUBMIT */
 
+       /* 13. FUNCTION MEMBATASI CHECKBOX */
+
+      function cekJumlahCheckbox() {
+
+        let jumlah =
+          document.getElementById("jumlah").value;
+
+        let semuaCheckbox =
+          document.querySelectorAll(
+            'input[name="matkul"]'
+          );
+
+        let jumlahDipilih = 0;
+
+        // Menghitung checkbox yang dipilih
+        for (
+          let i = 0;
+          i < semuaCheckbox.length;
+          i++
+        ) {
+
+          if (semuaCheckbox[i].checked) {
+            jumlahDipilih++;
+          }
+
+        }
+
+        // Membatasi jumlah pilihan
+        for (
+          let i = 0;
+          i < semuaCheckbox.length;
+          i++
+        ) {
+
+          if (
+            !semuaCheckbox[i].checked &&
+            jumlahDipilih >= jumlah
+          ) {
+            semuaCheckbox[i].disabled = true;
+          } else {
+            semuaCheckbox[i].disabled = false;
+          }
+        }
+      }
+
+
+       /* 14. EVENT JUMLAH PILIHAN */
+      document
+        .getElementById("jumlah")
+        .addEventListener(
+          "change",
+          cekJumlahCheckbox
+        );
+
+      /* 10. EVENT SUBMIT */
       document
         .getElementById("formData")
         .addEventListener("submit", function (event) {
           event.preventDefault();
-
-          for (let i = 0; i < semuaCheckbox.length; i++) {
-            semuaCheckbox[i].addEventListener("change", cekJumlahCheckbox);
-          }
 
           /* 11. MENGAMBIL DATA INPUT */
           let nama = document.getElementById("nama").value;
@@ -289,7 +397,6 @@
 
           /* 12. MENGAMBIL TEMPAT ERROR */
           let errorJumlah = document.getElementById("errorJumlah");
-
           let errorEmail = document.getElementById("errorEmail");
           errorJumlah.innerHTML = "";
           errorEmail.innerHTML = "";
@@ -338,15 +445,7 @@
           let arrayPilihan = [];
           for (let i = 0; i < matkul.length; i++) {
             arrayPilihan.push(matkul[i]);
-          }
-
-          let semuaCheckbox = document.querySelectorAll('input[name="matkul"]');
-
-          if (semuaCheckbox.length != jumlah) {
-            alert("Silakan pilih " + jumlah + " mata kuliah.");
-
-            return;
-          }
+          } 
 
           /* 18. JAVASCRIPT DOM UNTUK OUTPUT */
           let output = document.getElementById("output");
