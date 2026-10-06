@@ -1,438 +1,382 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Form JavaScript</title>
 
     <style>
-        * {
-            box-sizing: border-box;
-        }
+      * {
+        box-sizing: border-box;
+      }
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #74ebd5, #ACB6E5);
-            min-height: 100vh;
-            padding: 40px 20px;
-        }
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #74ebd5, #acb6e5);
+        min-height: 100vh;
+        padding: 40px 20px;
+      }
 
-        .container {
-            width: 100%;
-            max-width: 750px;
-            margin: auto;
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-        }
+      .container {
+        width: 100%;
+        max-width: 750px;
+        margin: auto;
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
 
-        h1 {
-            text-align: center;
-            margin-top: 0;
-            color: #333;
-        }
+      h1 {
+        text-align: center;
+        margin-top: 0;
+        color: #333;
+      }
 
-        .deskripsi {
-            text-align: center;
-            color: #666;
-            margin-bottom: 25px;
-        }
+      .deskripsi {
+        text-align: center;
+        color: #666;
+        margin-bottom: 25px;
+      }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
+      .form-group {
+        margin-bottom: 20px;
+      }
 
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 8px;
-            color: #333;
-        }
+      label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 8px;
+        color: #333;
+      }
 
-        input[type="text"],
-        input[type="email"],
-        input[type="number"],
-        select {
-            width: 100%;
-            padding: 11px;
-            border: 1px solid #bbb;
-            border-radius: 7px;
-            font-size: 15px;
-        }
+      input[type="text"],
+      input[type="email"],
+      input[type="number"],
+      select {
+        width: 100%;
+        padding: 11px;
+        border: 1px solid #bbb;
+        border-radius: 7px;
+        font-size: 15px;
+      }
 
-        .pilihan {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
+      .pilihan {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
 
-        .pilihan label {
-            font-weight: normal;
-            margin: 0;
-        }
+      .pilihan label {
+        font-weight: normal;
+        margin: 0;
+      }
 
-        button {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 7px;
-            background: #4b70e2;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-        }
+      button {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 7px;
+        background: #4b70e2;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+      }
 
-        button:hover {
-            background: #3457c4;
-        }
+      button:hover {
+        background: #3457c4;
+      }
 
-        #hasil {
-            margin-top: 25px;
-            padding: 20px;
-            background: #f4f6ff;
-            border-radius: 10px;
-            display: none;
-        }
+      #hasil {
+        margin-top: 25px;
+        padding: 20px;
+        background: #f4f6ff;
+        border-radius: 10px;
+        display: none;
+      }
 
-        #hasil h2 {
-            margin-top: 0;
-            color: #333;
-        }
+      #hasil h2 {
+        margin-top: 0;
+        color: #333;
+      }
 
-        #hasil p {
-            margin: 8px 0;
-        }
+      #hasil p {
+        margin: 8px 0;
+      }
 
-        .error {
-            color: red;
-            font-size: 13px;
-            margin-top: 5px;
-        }
+      .error {
+        color: red;
+        font-size: 13px;
+        margin-top: 5px;
+      }
     </style>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <div class="container">
+      <h1>Form Pilihan JavaScript</h1>
 
-        <h1>Form Pilihan JavaScript</h1>
+      <p class="deskripsi">
+        Contoh penggunaan input, spinner, checkbox, radio button, array, fungsi,
+        dan DOM JavaScript.
+      </p>
 
-        <p class="deskripsi">
-            Contoh penggunaan input, spinner, checkbox, radio button,
-            array, fungsi, dan DOM JavaScript.
-        </p>
-
-        <form id="formData">
-
-                 <!-- 1. INPUT TEKS -->
-            <div class="form-group">
-                <label for="nama">Nama</label>
-                <input type="text"
-                       id="nama"
-                       placeholder="Masukkan nama"
-                       required>
-            </div>
-
-
-            <!-- 2. INPUT JUMLAH / SPINNER + ERROR HANDLING-->
-            <div class="form-group">
-                <label for="jumlah">Jumlah Pilihan</label>
-                <input type="number"
-                       id="jumlah"
-                       min="1"
-                       max="5"
-                       value="1">
-                <div id="errorJumlah" class="error"></div>
-
-            </div>
-
-
-            <!--3. INPUT EMAIL + PATTERN MATCHING-->
-            <div class="form-group">
-
-                <label for="email">Email</label>
-                <input type="email"
-                       id="email"
-                       placeholder="contoh@email.com"
-                       required>
-                <div id="errorEmail" class="error"></div>
-
-            </div>
-
-
-            <!--4. DROP-DOWN -->
-            <div class="form-group">
-                <label for="jurusan">Pilihan Jurusan</label>
-                <select id="jurusan">
-
-                    <option value="">
-                        -- Pilih Jurusan --
-                    </option>
-
-                    <option value="Informatika">
-                        Informatika
-                    </option>
-
-                    <option value="Akuntansi">
-                        Akuntansi
-                    </option>
-
-                    <option value="Teknik Mesin">
-                        Teknik Mesin
-                    </option>
-
-                    <option value="Teknik Elektro">
-                        Teknik Elektro
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <!-- 5. CHECKBOX -->
-            <div class="form-group">
-                <label>Pilih Mata Kuliah</label>
-                <div class="pilihan">
-
-                    <!-- Checkbox 1 -->
-                    <label>
-                        <input type="checkbox"
-                               name="matkul"
-                               value="Pemrograman web">
-                        Pemrograman Web
-                    </label>
-
-                    <!-- Checkbox 2 -->
-                    <label>
-                        <input type="checkbox"
-                               name="matkul"
-                               value="Pembelajaran Mesin">
-                        Pembelajaran Mesin
-                    </label>
-
-                    <!-- Checkbox 3 -->
-                    <label>
-                        <input type="checkbox"
-                               name="matkul"
-                               value="Jaringan">
-                        Jaringan
-                    </label>
-
-                    <!-- Checkbox 4 -->
-                    <label>
-                        <input type="checkbox"
-                               name="matkul"
-                               value="Internet dan aplikasi">
-                        Internet dan Aplikasi
-                    </label>
-
-                    <!-- Checkbox 5 -->
-                    <label>
-                        <input type="checkbox"
-                               name="matkul"
-                               value="Matematika Diskrit">
-                        Matematika Diskrit
-                    </label>
-
-                </div>
-
-            </div>
-
-               <!--  6. RADIO BUTTON -->
-            <div class="form-group">
-                <label>Metode Pembelajaran</label>
-                <div class="pilihan">
-                    <label>
-                        <input type="radio"
-                               name="metode"
-                               value="Tatap Muka">
-                        Tatap Muka
-                    </label>
-
-                    <label>
-                        <input type="radio"
-                               name="metode"
-                               value="Online">
-                        Online
-                    </label>
-                </div>
-
-            </div>
-            <button type="submit">
-                Tampilkan Data
-            </button>
-
-        </form>
-
-   <!-- 7. OUTPUT JAVASCRIPT DOM -->
-        <div id="hasil">
-            <h2>Hasil Input</h2>
-            <div id="output"></div>
+      <form id="formData">
+        <!-- 1. INPUT TEKS -->
+        <div class="form-group">
+          <label for="nama">Nama</label>
+          <input type="text" id="nama" placeholder="Masukkan nama" required />
         </div>
 
+        <!-- 2. INPUT JUMLAH / SPINNER + ERROR HANDLING-->
+        <div class="form-group">
+          <label for="jumlah">Jumlah Pilihan</label>
+          <input type="number" id="jumlah" min="1" max="5" value="1" />
+          <div id="errorJumlah" class="error"></div>
+        </div>
+
+        <!--3. INPUT EMAIL + PATTERN MATCHING-->
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="contoh@email.com"
+            required
+          />
+          <div id="errorEmail" class="error"></div>
+        </div>
+
+        <!--4. DROP-DOWN -->
+        <div class="form-group">
+          <label for="jurusan">Pilihan Jurusan</label>
+          <select id="jurusan">
+            <option value="">-- Pilih Jurusan --</option>
+
+            <option value="Informatika">Informatika</option>
+
+            <option value="Akuntansi">Akuntansi</option>
+
+            <option value="Teknik Mesin">Teknik Mesin</option>
+
+            <option value="Teknik Elektro">Teknik Elektro</option>
+          </select>
+        </div>
+
+        <!-- 5. CHECKBOX -->
+        <div class="form-group">
+          <label>Pilih Mata Kuliah</label>
+          <div class="pilihan">
+            <!-- Checkbox 1 -->
+            <label>
+              <input type="checkbox" name="matkul" value="Pemrograman web" />
+              Pemrograman Web
+            </label>
+
+            <!-- Checkbox 2 -->
+            <label>
+              <input type="checkbox" name="matkul" value="Pembelajaran Mesin" />
+              Pembelajaran Mesin
+            </label>
+
+            <!-- Checkbox 3 -->
+            <label>
+              <input type="checkbox" name="matkul" value="Jaringan" />
+              Jaringan
+            </label>
+
+            <!-- Checkbox 4 -->
+            <label>
+              <input
+                type="checkbox"
+                name="matkul"
+                value="Internet dan aplikasi"
+              />
+              Internet dan Aplikasi
+            </label>
+
+            <!-- Checkbox 5 -->
+            <label>
+              <input type="checkbox" name="matkul" value="Matematika Diskrit" />
+              Matematika Diskrit
+            </label>
+          </div>
+        </div>
+
+        <!--  6. RADIO BUTTON -->
+        <div class="form-group">
+          <label>Metode Pembelajaran</label>
+          <div class="pilihan">
+            <label>
+              <input type="radio" name="metode" value="Tatap Muka" />
+              Tatap Muka
+            </label>
+
+            <label>
+              <input type="radio" name="metode" value="Online" />
+              Online
+            </label>
+          </div>
+        </div>
+        <button type="submit">Tampilkan Data</button>
+      </form>
+
+      <!-- 7. OUTPUT JAVASCRIPT DOM -->
+      <div id="hasil">
+        <h2>Hasil Input</h2>
+        <div id="output"></div>
+      </div>
     </div>
 
-
     <script>
-
-  /* 8. FUNCTION + LOOP + ARRAY UNTUK CHECKBOX */
-        function ambilCheckbox() {
-            let checkbox = document.querySelectorAll(
-                'input[name="matkul"]:checked'
-            );
-            let pilihan = [];
-            for (let i = 0; i < checkbox.length; i++) {
-                pilihan.push(checkbox[i].value);
-
-            }
-            return pilihan;
-        }
-
-            /* 9. FUNCTION UNTUK RADIO BUTTON */
-        function ambilRadio() {
-            let radio = document.querySelector(
-                'input[name="metode"]:checked'
-            );
-
-            if (radio != null) {
-                return radio.value;
-
-            }
-            return "Belum dipilih";
-        }
-        
-            /* 10. EVENT SUBMIT */
-
-        document.getElementById("formData").addEventListener(
-            "submit",
-            function(event) {
-
-
-                event.preventDefault();
-
-
-                /* 11. MENGAMBIL DATA INPUT */
-                let nama =
-                    document.getElementById("nama").value;
-                let jumlah =
-                    document.getElementById("jumlah").value;
-                let email =
-                    document.getElementById("email").value;
-                let jurusan =
-                    document.getElementById("jurusan").value;
-
-
-                /* 12. MENGAMBIL TEMPAT ERROR */
-                let errorJumlah =
-                    document.getElementById("errorJumlah");
-
-                let errorEmail =
-                    document.getElementById("errorEmail");
-                errorJumlah.innerHTML = "";
-                errorEmail.innerHTML = "";
-
-
-                /* 13. ERROR HANDLING SPINNER */
-
-                if (jumlah < 1 || jumlah > 5) {
-
-                    errorJumlah.innerHTML =
-                        "Jumlah harus antara 1 sampai 5.";
-
-                    alert(
-                        "Jumlah pilihan tidak sesuai. " +
-                        "Silakan masukkan angka 1 sampai 5."
-                    );
-
-                    document
-                        .getElementById("jumlah")
-                        .focus();
-
-                    return;
-                }
-
-                /* 14. PATTERN MATCHING EMAIL */
-                let polaEmail =
-                    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-                if (!polaEmail.test(email)) {
-                    errorEmail.innerHTML =
-                        "Format email tidak benar.";
-                    alert(
-                        "Email tidak valid. " +
-                        "Silakan masukkan email dengan format yang benar."
-                    );
-                    document
-                        .getElementById("email")
-                        .focus();
-
-                    return;
-                }
-
-            /* 15. MEMANGGIL FUNCTION CHECKBOX */
-                let matkul = ambilCheckbox();
-
-            /* 16. MEMANGGIL FUNCTION RADIO */
-                let metode = ambilRadio();
-
-            /* 17. ARRAY */
-                let arrayPilihan = [];
-                for (let i = 0; i < matkul.length; i++) {
-                    arrayPilihan.push(matkul[i]);   
-                }
-
-            /* 18. JAVASCRIPT DOM UNTUK OUTPUT */
-                let output =
-                    document.getElementById("output");
-
-
-                // Menampilkan data ke HTML
-                output.innerHTML =
-
-                    "<p><b>Nama:</b> " +
-                    nama +
-                    "</p>" +
-
-                    "<p><b>Jumlah Pilihan:</b> " +
-                    jumlah +
-                    "</p>" +
-
-                    "<p><b>Email:</b> " +
-                    email +
-                    "</p>" +
-
-                    "<p><b>Jurusan:</b> " +
-                    jurusan +
-                    "</p>" +
-
-                    "<p><b>Mata Kuliah:</b> " +
-
-                    (
-                        arrayPilihan.length > 0
-                        ? arrayPilihan.join(", ")
-                        : "Belum dipilih"
-                    ) +
-
-                    "</p>" +
-
-                    "<p><b>Metode Pembelajaran:</b> " +
-                    metode +
-                    "</p>";
-
-
-            /* 19. MENAMPILKAN HASIL */
-                document.getElementById("hasil")
-                    .style.display = "block";
-
-            }
+      /* 8. FUNCTION + LOOP + ARRAY UNTUK CHECKBOX */
+      function ambilCheckbox() {
+        let checkbox = document.querySelectorAll(
+          'input[name="matkul"]:checked',
         );
+        let pilihan = [];
+        for (let i = 0; i < checkbox.length; i++) {
+          pilihan.push(checkbox[i].value);
+        }
+        return pilihan;
+      }
 
+      /* 9. FUNCTION UNTUK RADIO BUTTON */
+      function ambilRadio() {
+        let radio = document.querySelector('input[name="metode"]:checked');
+        if (radio != null) {
+          return radio.value;
+        }
+        return "Belum dipilih";
+      }
+
+      let semuaCheckbox = document.querySelectorAll('input[name="matkul"]');
+      function cekJumlahCheckbox() {
+        let jumlah = document.getElementById("jumlah").value;
+
+        let jumlahDipilih = 0;
+        for (let i = 0; i < semuaCheckbox.length; i++) {
+          if (semuaCheckbox[i].checked) {
+            jumlahDipilih++;
+          }
+        }
+
+        for (let i = 0; i < semuaCheckbox.length; i++) {
+          if (!semuaCheckbox[i].checked && jumlahDipilih >= jumlah) {
+            semuaCheckbox[i].disabled = true;
+          } else {
+            semuaCheckbox[i].disabled = false;
+          }
+        }
+      }
+      /* 10. EVENT SUBMIT */
+
+      document
+        .getElementById("formData")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          for (let i = 0; i < semuaCheckbox.length; i++) {
+            semuaCheckbox[i].addEventListener("change", cekJumlahCheckbox);
+          }
+
+          /* 11. MENGAMBIL DATA INPUT */
+          let nama = document.getElementById("nama").value;
+          let jumlah = document.getElementById("jumlah").value;
+          let email = document.getElementById("email").value;
+          let jurusan = document.getElementById("jurusan").value;
+
+          /* 12. MENGAMBIL TEMPAT ERROR */
+          let errorJumlah = document.getElementById("errorJumlah");
+
+          let errorEmail = document.getElementById("errorEmail");
+          errorJumlah.innerHTML = "";
+          errorEmail.innerHTML = "";
+
+          /* 13. ERROR HANDLING SPINNER */
+
+          if (jumlah < 1 || jumlah > 5) {
+            errorJumlah.innerHTML = "Jumlah harus antara 1 sampai 5.";
+
+            alert(
+              "Jumlah pilihan tidak sesuai. " +
+                "Silakan masukkan angka 1 sampai 5.",
+            );
+
+            document.getElementById("jumlah").focus();
+
+            return;
+          }
+
+          /* 14. PATTERN MATCHING EMAIL */
+          let polaEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+          if (!polaEmail.test(email)) {
+            errorEmail.innerHTML = "Format email tidak benar.";
+            alert(
+              "Email tidak valid. " +
+                "Silakan masukkan email dengan format yang benar.",
+            );
+            document.getElementById("email").focus();
+
+            return;
+          }
+
+          /* 15. MEMANGGIL FUNCTION CHECKBOX */
+          let matkul = ambilCheckbox();
+          if (matkul.length != jumlah) {
+            alert("Jumlah mata kuliah yang dipilih harus " + jumlah + ".");
+
+            return;
+          }
+
+          /* 16. MEMANGGIL FUNCTION RADIO */
+          let metode = ambilRadio();
+
+          /* 17. ARRAY */
+          let arrayPilihan = [];
+          for (let i = 0; i < matkul.length; i++) {
+            arrayPilihan.push(matkul[i]);
+          }
+
+          let semuaCheckbox = document.querySelectorAll('input[name="matkul"]');
+
+          if (semuaCheckbox.length != jumlah) {
+            alert("Silakan pilih " + jumlah + " mata kuliah.");
+
+            return;
+          }
+
+          /* 18. JAVASCRIPT DOM UNTUK OUTPUT */
+          let output = document.getElementById("output");
+
+          // Menampilkan data ke HTML
+          output.innerHTML =
+            "<p><b>Nama:</b> " +
+            nama +
+            "</p>" +
+            "<p><b>Jumlah Pilihan:</b> " +
+            jumlah +
+            "</p>" +
+            "<p><b>Email:</b> " +
+            email +
+            "</p>" +
+            "<p><b>Jurusan:</b> " +
+            jurusan +
+            "</p>" +
+            "<p><b>Mata Kuliah:</b> " +
+            (arrayPilihan.length > 0
+              ? arrayPilihan.join(", ")
+              : "Belum dipilih") +
+            "</p>" +
+            "<p><b>Metode Pembelajaran:</b> " +
+            metode +
+            "</p>";
+
+          /* 19. MENAMPILKAN HASIL */
+          document.getElementById("hasil").style.display = "block";
+        });
     </script>
-
-</body>
+  </body>
 </html>
-            
-        
